@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.provider.ContactsContract
 import java.util.regex.Pattern
 
 object EmailValidator {

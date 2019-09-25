@@ -5,7 +5,10 @@ import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import org.junit.*
@@ -53,13 +56,13 @@ class ExampleInstrumentedTest {
 
     @Test
     fun login_success() {
-        Espresso.onView(ViewMatchers.withId(R.id.user_name))
+        Espresso.onView(withId(R.id.user_name))
             .perform(ViewActions.typeText("diki"))
 
-        Espresso.onView(ViewMatchers.withId(R.id.password))
+        Espresso.onView(withId(R.id.password))
             .perform(ViewActions.typeText("hallo"))
 
-        Espresso.onView(ViewMatchers.withId(R.id.login_button))
+        Espresso.onView(withId(R.id.login_button))
             .perform(ViewActions.click())
 
         showingSuccess()
@@ -67,22 +70,22 @@ class ExampleInstrumentedTest {
 
     @Test
     fun login_failure() {
-        Espresso.onView(ViewMatchers.withId(R.id.password))
+        Espresso.onView(withId(R.id.password))
             .perform(ViewActions.typeText("23232323"))
 
-        Espresso.onView(ViewMatchers.withId(R.id.user_name))
+        Espresso.onView(withId(R.id.user_name))
             .perform(ViewActions.typeText("afdfsdfdsf"))
 
-        Espresso.onView(ViewMatchers.withId(R.id.login_button))
+        Espresso.onView(withId(R.id.login_button))
             .perform(ViewActions.click())
 
-        Espresso.onView(ViewMatchers.withId(R.id.login_result))
-            .check(ViewAssertions.matches(ViewMatchers.withText("Gagal")))
+        Espresso.onView(withId(R.id.login_result))
+            .check(matches(withText(R.string.login_failed)))
     }
 
     private fun showingSuccess() {
-        Espresso.onView(ViewMatchers.withId(R.id.login_result))
-            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.login_success)))
+        Espresso.onView(withId(R.id.login_result))
+            .check(matches(withText(R.string.login_success)))
     }
 
     @After

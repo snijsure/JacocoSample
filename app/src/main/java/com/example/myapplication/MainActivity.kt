@@ -30,13 +30,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        validation()
+    }
+
+    private fun validation() {
+
         button_login.setOnClickListener {
-            if (editText_username.text.toString() == "diki" &&
-                editText_password.text.toString() == "hallo"
-            )
-                textView_result.text = getString(R.string.login_success)
-            else
-                textView_result.text = getString(R.string.login_failed)
+//            if (EmailValidator.isEmail(editText_username.text.toString())) {
+                if (editText_username.text.toString() == "diki" &&
+                    editText_password.text.toString() == "hallo"
+                ) {
+                    textView_result.text = getString(R.string.login_success)
+                } else {
+                    textView_result.text = getString(R.string.login_failed)
+                }
+//            }
+
         }
 
     }
